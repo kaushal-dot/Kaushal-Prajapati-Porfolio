@@ -100,8 +100,6 @@ function App() {
             }`}
             ref={titleRef}
             initial={false}
-            whileHover={{ x: 4 }}
-            transition={{ duration: 0.25 }}
           >
             {titleLines.map((line, lineIndex) => (
               <span className="hero-title-line" key={line}>
@@ -140,11 +138,6 @@ function App() {
                 src={pillar.image}
                 alt=""
                 aria-hidden="true"
-                whileHover={{
-                  rotate: index % 2 === 0 ? -3 : 3,
-                  scale: 1.04,
-                  transition: { duration: 0.25 },
-                }}
               />
               <h2>{pillar.label}</h2>
             </motion.article>
