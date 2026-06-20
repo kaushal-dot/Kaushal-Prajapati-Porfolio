@@ -57,7 +57,7 @@ function Preloader() {
     const minDelayTimer = window.setTimeout(() => {
       minDelayPassed = true;
       tryHide();
-    }, 650);
+    }, 10000);
 
     const loadHandler = () => {
       pageLoaded = true;
