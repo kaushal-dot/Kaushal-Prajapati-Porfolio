@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Ngetic Modern";
   src: url("./assets/fonts/ngetic-modern.regular.otf") format("opentype");
-  font-weight: 400 700;
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -314,19 +314,24 @@ a {
 .hero h1 {
   margin: 0;
   font-family: var(--display-font);
-  font-size: clamp(104px, 9.1vw, 174px);
+  font-size: clamp(112px, 9.7vw, 186px);
   font-weight: 400;
-  line-height: 0.76;
+  line-height: 0.82;
   letter-spacing: 0;
+  font-kerning: normal;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
 }
 
 .animated-title {
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero-title-line {
   display: block;
   overflow: hidden;
+  padding: 0.05em 0 0.12em;
+  margin: -0.05em 0 -0.12em;
 }
 
 .hero-letter {
