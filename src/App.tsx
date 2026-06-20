@@ -47,13 +47,13 @@ function App() {
     () => {
       if (!titleReady || !titleRef.current) return;
 
-      const letters = titleRef.current.querySelectorAll(".hero-letter");
+      const titleLines = titleRef.current.querySelectorAll(".hero-title-line");
 
-      animate(letters, {
+      animate(titleLines, {
         translateY: ["1.15em", "0em"],
         opacity: [0, 1],
         duration: 1400,
-        delay: stagger(34),
+        delay: stagger(120),
         ease: "outExpo",
       });
     },
@@ -103,13 +103,9 @@ function App() {
           >
             {titleLines.map((line, lineIndex) => (
               <span className="hero-title-line" key={line}>
-                {line.split("").map((letter, index) => (
-                  <span className="hero-letter" key={`${line}-${letter}-${index}`}>
-                    {letter}
-                  </span>
-                ))}
+                {line}
                 {lineIndex === titleLines.length - 1 ? (
-                  <span className="hero-letter hero-dot">.</span>
+                  <span className="hero-dot">.</span>
                 ) : null}
               </span>
             ))}

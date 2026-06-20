@@ -238,7 +238,7 @@ a {
 }
 
 .descriptor span,
-.hero h1 span {
+.hero-dot {
   color: var(--orange);
 }
 
@@ -329,25 +329,21 @@ a {
 
 .hero-title-line {
   display: block;
+  color: var(--orange);
   overflow: hidden;
   padding: 0.05em 0 0.12em;
   margin: -0.05em 0 -0.12em;
-}
-
-.hero-letter {
-  display: inline-block;
-  color: var(--orange);
   opacity: 0;
   transform: translateY(1.15em);
   transition: color 0.95s ease;
   will-change: opacity, transform;
 }
 
-.animated-title.is-ready .hero-letter {
+.animated-title.is-ready .hero-title-line {
   opacity: 1;
 }
 
-.animated-title.is-settled .hero-letter:not(.hero-dot) {
+.animated-title.is-settled .hero-title-line {
   color: var(--ink);
 }
 
