@@ -123,7 +123,17 @@ function App() {
             <motion.article
               className="pillar"
               key={pillar.label}
-              initial={false}
+              initial={{ opacity: 0, x: -34, filter: "blur(10px)" }}
+              animate={
+                titleSettled
+                  ? { opacity: 1, x: 0, filter: "blur(0px)" }
+                  : { opacity: 0, x: -34, filter: "blur(10px)" }
+              }
+              transition={{
+                duration: 1.25,
+                delay: index * 0.22,
+                ease: [0.22, 1, 0.36, 1],
+              }}
             >
               <motion.img
                 className={`mark ${pillar.className ?? ""}`}
