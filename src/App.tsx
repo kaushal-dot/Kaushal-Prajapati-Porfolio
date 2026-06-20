@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { animate, stagger } from "animejs";
 import { motion } from "framer-motion";
 import gsap from "gsap";
@@ -26,6 +26,7 @@ function App() {
   const badgeRef = useRef<HTMLAnchorElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const [titleReady, setTitleReady] = useState(false);
+  const [titleSettled, setTitleSettled] = useState(false);
 
   useGSAP(
     () => {
@@ -59,6 +60,16 @@ function App() {
     { dependencies: [titleReady], scope: titleRef },
   );
 
+  useEffect(() => {
+    if (!titleReady) return;
+
+    const settleTimer = window.setTimeout(() => {
+      setTitleSettled(true);
+    }, 2300);
+
+    return () => window.clearTimeout(settleTimer);
+  }, [titleReady]);
+
   return (
     <>
       <Preloader onDone={() => setTitleReady(true)} />
@@ -84,7 +95,9 @@ function App() {
         <section className="hero" aria-labelledby="hero-title">
           <motion.h1
             id="hero-title"
-            className={`animated-title ${titleReady ? "is-ready" : ""}`}
+            className={`animated-title ${titleReady ? "is-ready" : ""} ${
+              titleSettled ? "is-settled" : ""
+            }`}
             ref={titleRef}
             initial={false}
             whileHover={{ x: 4 }}

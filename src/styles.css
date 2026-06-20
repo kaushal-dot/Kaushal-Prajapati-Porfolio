@@ -192,17 +192,20 @@ a {
   width: 50%;
   content: "";
   background: var(--orange);
+  border-radius: 8px;
   transform: scaleX(0);
   transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .nav-links a::before {
   left: 0;
+  border-radius: 8px 0 0 8px;
   transform-origin: left center;
 }
 
 .nav-links a::after {
   right: 0;
+  border-radius: 0 8px 8px 0;
   transform-origin: right center;
 }
 
@@ -248,13 +251,19 @@ a {
 
 .hero-letter {
   display: inline-block;
+  color: var(--orange);
   opacity: 0;
   transform: translateY(1.15em);
+  transition: color 0.95s ease;
   will-change: opacity, transform;
 }
 
 .animated-title.is-ready .hero-letter {
   opacity: 1;
+}
+
+.animated-title.is-settled .hero-letter:not(.hero-dot) {
+  color: var(--ink);
 }
 
 .hero-dot {
