@@ -2,23 +2,31 @@ import { useEffect, useState } from "react";
 
 const CIRCUMFERENCE = 198.5;
 const MIN_LOAD_TIME = 10000;
+const EXIT_TIME = 1050;
 
-function Preloader() {
-  const [hidden, setHidden] = useState(false);
+type PreloaderProps = {
+  onDone?: () => void;
+};
+
+function Preloader({ onDone }: PreloaderProps) {
+  const [exiting, setExiting] = useState(false);
   const [removed, setRemoved] = useState(false);
 
   useEffect(() => {
     let pageLoaded = document.readyState === "complete";
     let minDelayPassed = false;
-    let hideTimer: number | undefined;
+    let exitTimer: number | undefined;
     let removeTimer: number | undefined;
 
     const tryHide = () => {
       if (!pageLoaded || !minDelayPassed) return;
 
-      hideTimer = window.setTimeout(() => {
-        setHidden(true);
-        removeTimer = window.setTimeout(() => setRemoved(true), 260);
+      exitTimer = window.setTimeout(() => {
+        setExiting(true);
+        onDone?.();
+        removeTimer = window.setTimeout(() => {
+          setRemoved(true);
+        }, EXIT_TIME);
       }, 150);
     };
 
@@ -41,16 +49,16 @@ function Preloader() {
     return () => {
       window.removeEventListener("load", loadHandler);
       window.clearTimeout(minDelayTimer);
-      if (hideTimer) window.clearTimeout(hideTimer);
+      if (exitTimer) window.clearTimeout(exitTimer);
       if (removeTimer) window.clearTimeout(removeTimer);
     };
-  }, []);
+  }, [onDone]);
 
   if (removed) return null;
 
   return (
     <div
-      className={`preloader ${hidden ? "hide" : ""}`}
+      className={`preloader ${exiting ? "exit" : ""}`}
       aria-label="Loading portfolio"
       aria-live="polite"
     >
