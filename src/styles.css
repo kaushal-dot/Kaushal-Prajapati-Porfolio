@@ -252,7 +252,7 @@ a {
   min-width: 128px;
   overflow: hidden;
   padding: 10px 20px 11px;
-  font-family: var(--display-font);
+  font-family: var(--body-font);
   font-size: 22px;
   font-weight: 700;
   line-height: 1;
