@@ -1,0 +1,281 @@
+:root {
+  --paper: #f8f8f6;
+  --ink: #151515;
+  --line: #272727;
+  --orange: #f05323;
+  --shadow: 5px 5px 0 var(--orange);
+  --display-font: "Ngetic Modern", "Ngetic", "Didot", "Bodoni 72", "Bodoni MT",
+    "Times New Roman", serif;
+  --body-font: "Outfit", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--body-font);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.landing {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 46px 46px 43px;
+}
+
+.topbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.descriptor,
+.nav-links a {
+  margin: 0;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.descriptor {
+  width: min(629.3333px, 32.7778vw);
+  height: 47px;
+  padding: 0 20px;
+  overflow: hidden;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 47px;
+  letter-spacing: 0.03em;
+  text-align: center;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.descriptor span,
+.hero h1 span {
+  color: var(--orange);
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links a {
+  min-width: 128px;
+  padding: 10px 20px 11px;
+  font-family: var(--display-font);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+}
+
+.hero {
+  margin-top: 61px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-family: var(--display-font);
+  font-size: clamp(104px, 9.1vw, 174px);
+  font-weight: 400;
+  line-height: 0.76;
+  letter-spacing: 0;
+}
+
+.pillars {
+  position: absolute;
+  bottom: 48px;
+  left: 56px;
+  display: grid;
+  width: min(1304px, calc(100vw - 560px));
+  grid-template-columns: repeat(4, 230px);
+  align-items: end;
+  justify-content: space-between;
+  gap: 34px;
+}
+
+.pillar {
+  min-width: 0;
+}
+
+.mark {
+  display: block;
+  width: 184px;
+  height: auto;
+  transform-origin: center;
+}
+
+.mark-one {
+  width: 92px;
+}
+
+.pillar:nth-child(2) {
+  transform: translateX(21px);
+}
+
+.pillar:nth-child(3) {
+  transform: translateX(23px);
+}
+
+.pillar h2 {
+  margin: 48px 0 0;
+  font-size: clamp(22px, 1.5vw, 29px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+}
+
+.scroll-badge {
+  position: absolute;
+  right: 45px;
+  bottom: 36px;
+  display: grid;
+  width: 126px;
+  height: 126px;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.badge-core {
+  display: grid;
+  width: 68px;
+  height: 68px;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.badge-text {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: var(--ink);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.badge-text text {
+  font-family: var(--body-font);
+}
+
+@media (max-width: 1200px) {
+  .landing {
+    min-height: 900px;
+  }
+
+  .topbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .descriptor {
+    width: min(629.3333px, 100%);
+  }
+
+  .nav-links {
+    justify-content: flex-end;
+  }
+
+  .pillars {
+    right: 48px;
+    width: auto;
+    grid-template-columns: repeat(2, 245px);
+    row-gap: 48px;
+  }
+}
+
+@media (max-width: 720px) {
+  .landing {
+    min-height: 100vh;
+    overflow: visible;
+    padding: 24px 20px 32px;
+  }
+
+  .descriptor {
+    height: auto;
+    padding: 12px 14px;
+    font-size: 15px;
+    line-height: 1.1;
+  }
+
+  .nav-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .nav-links a {
+    min-width: 0;
+    padding: 12px 10px;
+    font-size: 23px;
+  }
+
+  .hero {
+    margin-top: 52px;
+  }
+
+  .hero h1 {
+    font-size: clamp(74px, 24vw, 128px);
+    line-height: 0.78;
+  }
+
+  .pillars {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 34px 18px;
+    margin-top: 150px;
+  }
+
+  .mark {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .mark-one {
+    width: 52%;
+  }
+
+  .pillar h2 {
+    margin-top: 20px;
+    font-size: clamp(17px, 4vw, 22px);
+    white-space: normal;
+  }
+
+  .scroll-badge {
+    right: 20px;
+    bottom: 18px;
+    width: 94px;
+    height: 94px;
+  }
+
+  .badge-core {
+    width: 54px;
+    height: 54px;
+  }
+
+  .badge-text {
+    font-size: 12px;
+  }
+}
