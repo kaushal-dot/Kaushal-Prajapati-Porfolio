@@ -357,14 +357,17 @@ a {
   left: 56px;
   display: grid;
   width: min(1304px, calc(100vw - 560px));
-  grid-template-columns: repeat(4, 230px);
+  grid-template-columns: repeat(4, minmax(0, 260px));
   align-items: end;
   justify-content: space-between;
-  gap: 34px;
+  gap: 48px;
 }
 
 .pillar {
+  display: flex;
   min-width: 0;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .mark {
@@ -376,14 +379,6 @@ a {
 
 .mark-one {
   width: 92px;
-}
-
-.pillar:nth-child(2) {
-  transform: translateX(21px);
-}
-
-.pillar:nth-child(3) {
-  transform: translateX(23px);
 }
 
 .pillar h2 {
