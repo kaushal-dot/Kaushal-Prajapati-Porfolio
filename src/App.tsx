@@ -73,10 +73,9 @@ function App() {
               <motion.a
                 key={item}
                 href={`#${item}`}
-                whileHover={{ y: -3, boxShadow: "8px 8px 0 var(--orange)" }}
                 whileTap={{ y: 1, boxShadow: "3px 3px 0 var(--orange)" }}
               >
-                {item}
+                <span>{item}</span>
               </motion.a>
             ))}
           </motion.nav>

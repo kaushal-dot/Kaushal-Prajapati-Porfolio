@@ -168,13 +168,60 @@ a {
 }
 
 .nav-links a {
+  position: relative;
   min-width: 128px;
+  overflow: hidden;
   padding: 10px 20px 11px;
-  font-family: var(--display-font);
+  font-family: var(--body-font);
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1;
   text-align: center;
+  transition:
+    box-shadow 0.28s ease,
+    color 0.28s ease,
+    transform 0.28s ease;
+}
+
+.nav-links a::before,
+.nav-links a::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  width: 50%;
+  content: "";
+  background: var(--orange);
+  transform: scaleX(0);
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-links a::before {
+  left: 0;
+  transform-origin: left center;
+}
+
+.nav-links a::after {
+  right: 0;
+  transform-origin: right center;
+}
+
+.nav-links a span {
+  position: relative;
+  z-index: 1;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: var(--paper);
+  box-shadow: none;
+}
+
+.nav-links a:hover::before,
+.nav-links a:hover::after,
+.nav-links a:focus-visible::before,
+.nav-links a:focus-visible::after {
+  transform: scaleX(1);
 }
 
 .hero {
