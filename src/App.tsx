@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { animate, stagger } from "animejs";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -19,8 +20,12 @@ const pillars = [
   { label: "Building Systems", image: fourthShape },
 ];
 
+const titleLines = ["Kaushal", "Prajapati"];
+
 function App() {
   const badgeRef = useRef<HTMLAnchorElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const [titleReady, setTitleReady] = useState(false);
 
   useGSAP(
     () => {
@@ -37,9 +42,26 @@ function App() {
     { scope: badgeRef },
   );
 
+  useGSAP(
+    () => {
+      if (!titleReady || !titleRef.current) return;
+
+      const letters = titleRef.current.querySelectorAll(".hero-letter");
+
+      animate(letters, {
+        translateY: ["1.15em", "0em"],
+        opacity: [0, 1],
+        duration: 1400,
+        delay: stagger(34),
+        ease: "outExpo",
+      });
+    },
+    { dependencies: [titleReady], scope: titleRef },
+  );
+
   return (
     <>
-      <Preloader />
+      <Preloader onDone={() => setTitleReady(true)} />
       <main className="landing" id="top">
         <motion.header className="topbar" aria-label="Primary">
           <motion.p className="descriptor">
@@ -63,13 +85,24 @@ function App() {
         <section className="hero" aria-labelledby="hero-title">
           <motion.h1
             id="hero-title"
+            className={`animated-title ${titleReady ? "is-ready" : ""}`}
+            ref={titleRef}
             initial={false}
             whileHover={{ x: 4 }}
             transition={{ duration: 0.25 }}
           >
-            Kaushal
-            <br />
-            Prajapati<span>.</span>
+            {titleLines.map((line, lineIndex) => (
+              <span className="hero-title-line" key={line}>
+                {line.split("").map((letter, index) => (
+                  <span className="hero-letter" key={`${line}-${letter}-${index}`}>
+                    {letter}
+                  </span>
+                ))}
+                {lineIndex === titleLines.length - 1 ? (
+                  <span className="hero-letter hero-dot">.</span>
+                ) : null}
+              </span>
+            ))}
           </motion.h1>
         </section>
 

@@ -190,6 +190,30 @@ a {
   letter-spacing: 0;
 }
 
+.animated-title {
+  overflow: hidden;
+}
+
+.hero-title-line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(1.15em);
+  will-change: opacity, transform;
+}
+
+.animated-title.is-ready .hero-letter {
+  opacity: 1;
+}
+
+.hero-dot {
+  color: var(--orange);
+}
+
 .pillars {
   position: absolute;
   bottom: 48px;
