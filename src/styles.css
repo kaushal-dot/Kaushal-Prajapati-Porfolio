@@ -37,7 +37,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
+  background: var(--orange);
   opacity: 1;
   transition: opacity 0.25s ease-out;
 }
@@ -61,6 +61,9 @@ a {
 .preloader-arc {
   transform-origin: 34.1px 34.1px;
   transition: stroke-dashoffset 0.25s ease-out;
+  animation:
+    preloader-spin 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite,
+    preloader-arc-grow 10s linear forwards;
 }
 
 .preloader-blades {
@@ -68,13 +71,19 @@ a {
   animation: preloader-spin 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
-.preloader.indeterminate .preloader-arc {
-  animation: preloader-spin 1.6s linear infinite;
-}
-
 @keyframes preloader-spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes preloader-arc-grow {
+  from {
+    stroke-dashoffset: 198.5;
+  }
+
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
