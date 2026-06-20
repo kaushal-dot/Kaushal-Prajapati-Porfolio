@@ -30,6 +30,54 @@ a {
   text-decoration: none;
 }
 
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  opacity: 1;
+  transition: opacity 0.25s ease-out;
+}
+
+.preloader.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.preloader-icon {
+  width: 100px;
+  height: 100px;
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+}
+
+.preloader.hide .preloader-icon {
+  transform: scale(1.15);
+  opacity: 0;
+}
+
+.preloader-arc {
+  transform-origin: 34.1px 34.1px;
+  transition: stroke-dashoffset 0.25s ease-out;
+}
+
+.preloader-blades {
+  transform-origin: 34.1px 34.1px;
+  animation: preloader-spin 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.preloader.indeterminate .preloader-arc {
+  animation: preloader-spin 1.6s linear infinite;
+}
+
+@keyframes preloader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .landing {
   position: relative;
   min-height: 100vh;
