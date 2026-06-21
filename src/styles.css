@@ -474,13 +474,13 @@ a {
   position: relative;
   display: inline-block;
   margin-left: 0.02em;
-  width: 0.27em;
+  width: 0.24em;
 }
 
 .hello-orb {
   position: absolute;
   left: 50%;
-  bottom: 0.02em;
+  bottom: 0.015em;
   z-index: 0;
   display: block;
   width: 0.12em;
