@@ -83,6 +83,7 @@
   --ink: #151515;
   --line: #272727;
   --orange: #f05323;
+  --dot-red: #e53935;
   --shadow: 5px 5px 0 var(--orange);
   --display-font: "Ngetic Modern", "Ngetic", "Didot", "Bodoni 72", "Bodoni MT",
     "Times New Roman", serif;
@@ -450,9 +451,10 @@ a {
 
 .hello-title {
   position: relative;
-  z-index: 1;
+  z-index: 5;
   margin: 0;
   color: var(--ink);
+  text-shadow: 0 1px 0 rgba(248, 248, 246, 0.15);
   font-family: var(--display-font);
   font-size: clamp(92px, 7.5vw, 148px);
   font-weight: 400;
@@ -472,6 +474,7 @@ a {
   position: relative;
   display: inline-block;
   margin-left: 0.02em;
+  width: 0.27em;
 }
 
 .hello-orb {
@@ -483,7 +486,7 @@ a {
   width: 0.12em;
   height: 0.12em;
   border-radius: 50%;
-  background: var(--orange);
+  background: var(--dot-red);
   opacity: 0;
   transform-origin: center;
   will-change: opacity, transform;

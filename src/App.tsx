@@ -77,7 +77,7 @@ function App() {
 
       if (reducedMotion) {
         gsap.set(aboutRef.current, { backgroundColor: "var(--paper)" });
-        gsap.set(".hello-title", { opacity: 1, y: 0 });
+        gsap.set(".hello-title", { opacity: 1, y: 0, color: "var(--ink)" });
         gsap.set(".hello-orb", { opacity: 1, scale: 1, xPercent: -50, yPercent: 0 });
         return;
       }
@@ -94,31 +94,37 @@ function App() {
       });
 
       timeline
-        .to({}, { duration: 0.55 })
-        .set(".hello-orb", { zIndex: 0 })
-        .fromTo(
-          ".hello-title",
-          { opacity: 0, y: 52, filter: "blur(12px)" },
-          {
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)",
-            duration: 1,
-            ease: "power3.out",
-          },
-        )
-        .fromTo(
-          ".hello-orb",
-          { opacity: 1, scale: 230, xPercent: -50, yPercent: 0 },
-          {
-            opacity: 1,
-            scale: 1,
-            xPercent: -50,
-            yPercent: 0,
-            duration: 1.35,
-            ease: "power3.inOut",
-          },
-        )
+        .set(aboutRef.current, { backgroundColor: "var(--orange)" })
+        .set(".hello-title", {
+          opacity: 0,
+          y: -70,
+          filter: "blur(0px)",
+          color: "var(--ink)",
+          zIndex: 5,
+        })
+        .set(".hello-orb", {
+          opacity: 1,
+          scale: 230,
+          xPercent: -50,
+          yPercent: 0,
+          zIndex: 0,
+        })
+        .set(".hello-badge", { opacity: 0, scale: 0.85 })
+        .to({}, { duration: 0.45 })
+        .to(".hello-title", {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power2.out",
+        })
+        .to({}, { duration: 0.35 })
+        .to(".hello-orb", {
+          scale: 1,
+          xPercent: -50,
+          yPercent: 0,
+          duration: 1.35,
+          ease: "power3.inOut",
+        })
         .to(
           aboutRef.current,
           {
