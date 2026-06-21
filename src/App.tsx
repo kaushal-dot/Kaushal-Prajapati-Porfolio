@@ -83,7 +83,7 @@ function App() {
           scale: 1,
           xPercent: -50,
           yPercent: 0,
-          backgroundColor: "var(--dot-red)",
+          backgroundColor: "var(--orange)",
           zIndex: 4,
         });
         gsap.set(".hello-badge", { opacity: 1, scale: 1 });
@@ -104,8 +104,11 @@ function App() {
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: aboutRef.current,
-          start: "top 72%",
-          toggleActions: "play none none reverse",
+          start: "top top",
+          end: "+=280%",
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
         },
       });
 
@@ -128,13 +131,14 @@ function App() {
             immediateRender: false,
           },
         )
-        .set(".hello-orb", { opacity: 1, scale: 230, zIndex: 0 }, "+=0.18")
+        .to({}, { duration: 0.9 })
+        .set(".hello-orb", { opacity: 1, scale: 240, zIndex: 0 })
         .set(aboutRef.current, { backgroundColor: "var(--paper)" })
         .to(".hello-orb", {
           scale: 1,
           xPercent: -50,
           yPercent: 0,
-          backgroundColor: "var(--dot-red)",
+          backgroundColor: "var(--orange)",
           duration: 1.35,
           ease: "power3.inOut",
         })

@@ -83,7 +83,6 @@
   --ink: #151515;
   --line: #272727;
   --orange: #f05323;
-  --dot-red: #e53935;
   --shadow: 5px 5px 0 var(--orange);
   --display-font: "Ngetic Modern", "Ngetic", "Didot", "Bodoni 72", "Bodoni MT",
     "Times New Roman", serif;
@@ -474,19 +473,19 @@ a {
   position: relative;
   display: inline-block;
   margin-left: 0.02em;
-  width: 0.24em;
+  width: 0.22em;
 }
 
 .hello-orb {
   position: absolute;
   left: 50%;
-  bottom: 0.015em;
+  bottom: 0.045em;
   z-index: 0;
   display: block;
   width: 0.12em;
   height: 0.12em;
   border-radius: 50%;
-  background: var(--dot-red);
+  background: var(--orange);
   opacity: 0;
   transform-origin: center;
   will-change: opacity, transform;
