@@ -83,36 +83,40 @@ function App() {
         return;
       }
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: aboutRef.current,
-          start: "top bottom",
-          end: "top center",
-          scrub: 1.2,
-          pin: false,
-          anticipatePin: 1,
-        },
-      });
+      gsap.set(aboutRef.current, { backgroundColor: "var(--orange)" });
+      gsap.set(".hello-orb", { opacity: 0, scale: 1, xPercent: -50, yPercent: 0 });
+      gsap.set(".hello-badge", { opacity: 0, scale: 0.85 });
 
-      timeline
-        .set(aboutRef.current, { backgroundColor: "var(--orange)" })
-        .set(".hello-title", {
+      const tween = gsap.fromTo(
+        ".hello-title",
+        {
           opacity: 0,
-          y: -70,
-          filter: "blur(0px)",
+          y: -96,
+          filter: "blur(10px)",
           color: "var(--ink)",
           zIndex: 5,
-        })
-        .set(".hello-orb", { opacity: 0, scale: 1, xPercent: -50, yPercent: 0 })
-        .set(".hello-badge", { opacity: 0, scale: 0.85 })
-        .to(".hello-title", {
+        },
+        {
           opacity: 1,
           y: 0,
-          duration: 1.2,
-          ease: "power2.out",
-        }, 0.35);
+          filter: "blur(0px)",
+          duration: 1.25,
+          ease: "power3.out",
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: aboutRef.current,
+            start: "top 72%",
+            toggleActions: "play none none reverse",
+          },
+        },
+      );
 
-      return () => timeline.kill();
+      const refresh = window.setTimeout(() => ScrollTrigger.refresh(), 100);
+
+      return () => {
+        window.clearTimeout(refresh);
+        tween.kill();
+      };
     },
     { scope: aboutRef },
   );
