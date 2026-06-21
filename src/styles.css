@@ -165,7 +165,7 @@ a {
   transition: stroke-dashoffset 0.25s ease-out;
   animation:
     preloader-spin 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite,
-    preloader-arc-grow 10s linear forwards;
+    preloader-arc-grow 6s linear forwards;
 }
 
 .preloader-blades {

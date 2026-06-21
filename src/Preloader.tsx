@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const CIRCUMFERENCE = 198.5;
-const MIN_LOAD_TIME = 10000;
+const MIN_LOAD_TIME = 6000;
 const EXIT_TIME = 1300;
 
 type PreloaderProps = {
