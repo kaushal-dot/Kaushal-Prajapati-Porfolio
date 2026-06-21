@@ -76,8 +76,9 @@ function App() {
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       if (reducedMotion) {
+        gsap.set(aboutRef.current, { backgroundColor: "var(--paper)" });
         gsap.set(".hello-title", { opacity: 1, y: 0 });
-        gsap.set(".hello-orb", { opacity: 1, scale: 1, xPercent: -50, x: 0, y: 0 });
+        gsap.set(".hello-orb", { opacity: 1, scale: 1, xPercent: -50, yPercent: 0 });
         return;
       }
 
@@ -94,11 +95,7 @@ function App() {
 
       timeline
         .to({}, { duration: 0.55 })
-        .to(aboutRef.current, {
-          backgroundColor: "var(--paper)",
-          duration: 0.9,
-          ease: "none",
-        })
+        .set(".hello-orb", { zIndex: 0 })
         .fromTo(
           ".hello-title",
           { opacity: 0, y: 52, filter: "blur(12px)" },
@@ -112,17 +109,26 @@ function App() {
         )
         .fromTo(
           ".hello-orb",
-          { opacity: 0, scale: 22, xPercent: -50, x: "-46vw", y: "18vh" },
+          { opacity: 1, scale: 230, xPercent: -50, yPercent: 0 },
           {
             opacity: 1,
             scale: 1,
             xPercent: -50,
-            x: 0,
-            y: 0,
-            duration: 1.2,
+            yPercent: 0,
+            duration: 1.35,
             ease: "power3.inOut",
           },
         )
+        .to(
+          aboutRef.current,
+          {
+            backgroundColor: "var(--paper)",
+            duration: 0.2,
+            ease: "none",
+          },
+          "<0.04",
+        )
+        .set(".hello-orb", { zIndex: 4 })
         .fromTo(
           ".hello-badge",
           { opacity: 0, scale: 0.85 },
