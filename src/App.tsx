@@ -77,7 +77,7 @@ function App() {
 
       if (reducedMotion) {
         gsap.set(".hello-title", { opacity: 1, y: 0 });
-        gsap.set(".hello-orb", { opacity: 1, scale: 1, x: 0, y: 0 });
+        gsap.set(".hello-orb", { opacity: 1, scale: 1, xPercent: -50, x: 0, y: 0 });
         return;
       }
 
@@ -112,10 +112,11 @@ function App() {
         )
         .fromTo(
           ".hello-orb",
-          { opacity: 0, scale: 18, x: "-46vw", y: "18vh" },
+          { opacity: 0, scale: 22, xPercent: -50, x: "-46vw", y: "18vh" },
           {
             opacity: 1,
             scale: 1,
+            xPercent: -50,
             x: 0,
             y: 0,
             duration: 1.2,
@@ -261,8 +262,10 @@ function App() {
           <section className="hello-section" id="about" ref={aboutRef}>
             <h2 className="hello-title">
               <span>Hello</span>
-              <span className="hello-exclamation">!</span>
-              <span className="hello-orb" aria-hidden="true" />
+              <span className="hello-exclamation">
+                !
+                <span className="hello-orb" aria-hidden="true" />
+              </span>
             </h2>
 
             <a

@@ -468,17 +468,19 @@ a {
 }
 
 .hello-exclamation {
+  position: relative;
+  display: inline-block;
   margin-left: 0.02em;
 }
 
 .hello-orb {
   position: absolute;
-  right: -0.02em;
-  bottom: 0.03em;
+  left: 50%;
+  bottom: 0.02em;
   z-index: 2;
   display: block;
-  width: 0.13em;
-  height: 0.13em;
+  width: 0.12em;
+  height: 0.12em;
   border-radius: 50%;
   background: var(--orange);
   opacity: 0;
