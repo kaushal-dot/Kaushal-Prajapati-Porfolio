@@ -439,6 +439,57 @@ a {
   font-family: var(--body-font);
 }
 
+.hello-section {
+  position: relative;
+  display: grid;
+  min-height: 100vh;
+  overflow: hidden;
+  place-items: center;
+  background: var(--orange);
+}
+
+.hello-title {
+  position: relative;
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--display-font);
+  font-size: clamp(92px, 7.5vw, 148px);
+  font-weight: 400;
+  line-height: 0.78;
+  letter-spacing: 0;
+  opacity: 0;
+  text-rendering: geometricPrecision;
+  will-change: opacity, transform, filter;
+}
+
+.hello-title span {
+  position: relative;
+  z-index: 1;
+}
+
+.hello-exclamation {
+  margin-left: 0.02em;
+}
+
+.hello-orb {
+  position: absolute;
+  right: -0.02em;
+  bottom: 0.03em;
+  z-index: 2;
+  display: block;
+  width: 0.13em;
+  height: 0.13em;
+  border-radius: 50%;
+  background: var(--orange);
+  opacity: 0;
+  transform-origin: center;
+  will-change: opacity, transform;
+}
+
+.hello-badge {
+  opacity: 0;
+}
+
 @media (max-width: 1200px) {
   .landing {
     min-height: 900px;
@@ -537,5 +588,9 @@ a {
 
   .badge-text {
     font-size: 12px;
+  }
+
+  .hello-title {
+    font-size: clamp(76px, 18vw, 120px);
   }
 }

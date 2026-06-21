@@ -28,6 +28,8 @@ const titleLines = ["Kaushal", "Prajapati"];
 
 function App() {
   const badgeRef = useRef<HTMLAnchorElement>(null);
+  const aboutBadgeRef = useRef<HTMLAnchorElement>(null);
+  const aboutRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const [titleReady, setTitleReady] = useState(false);
   const [titleSettled, setTitleSettled] = useState(false);
@@ -49,9 +51,14 @@ function App() {
 
   useGSAP(
     () => {
-      if (!badgeRef.current) return;
+      const badgeTexts = [
+        badgeRef.current?.querySelector(".badge-text"),
+        aboutBadgeRef.current?.querySelector(".badge-text"),
+      ].filter(Boolean);
 
-      gsap.to(badgeRef.current.querySelector(".badge-text"), {
+      if (badgeTexts.length === 0) return;
+
+      gsap.to(badgeTexts, {
         rotate: 360,
         duration: 16,
         ease: "none",
@@ -60,6 +67,71 @@ function App() {
       });
     },
     { scope: badgeRef },
+  );
+
+  useGSAP(
+    () => {
+      if (!aboutRef.current) return;
+
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (reducedMotion) {
+        gsap.set(".hello-title", { opacity: 1, y: 0 });
+        gsap.set(".hello-orb", { opacity: 1, scale: 1, x: 0, y: 0 });
+        return;
+      }
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: aboutRef.current,
+          start: "top top",
+          end: "+=300%",
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+        },
+      });
+
+      timeline
+        .to({}, { duration: 0.55 })
+        .to(aboutRef.current, {
+          backgroundColor: "var(--paper)",
+          duration: 0.9,
+          ease: "none",
+        })
+        .fromTo(
+          ".hello-title",
+          { opacity: 0, y: 52, filter: "blur(12px)" },
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 1,
+            ease: "power3.out",
+          },
+        )
+        .fromTo(
+          ".hello-orb",
+          { opacity: 0, scale: 18, x: "-46vw", y: "18vh" },
+          {
+            opacity: 1,
+            scale: 1,
+            x: 0,
+            y: 0,
+            duration: 1.2,
+            ease: "power3.inOut",
+          },
+        )
+        .fromTo(
+          ".hello-badge",
+          { opacity: 0, scale: 0.85 },
+          { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" },
+          "<0.65",
+        );
+
+      return () => timeline.kill();
+    },
+    { scope: aboutRef },
   );
 
   useGSAP(
@@ -185,6 +257,36 @@ function App() {
               <img className="badge-core" src={scrollLogo} alt="" aria-hidden="true" />
             </motion.a>
           </main>
+
+          <section className="hello-section" id="about" ref={aboutRef}>
+            <h2 className="hello-title">
+              <span>Hello</span>
+              <span className="hello-exclamation">!</span>
+              <span className="hello-orb" aria-hidden="true" />
+            </h2>
+
+            <a
+              className="scroll-badge hello-badge"
+              href="#portfolio"
+              aria-label="Scroll down to see more work"
+              ref={aboutBadgeRef}
+            >
+              <svg className="badge-text" viewBox="0 0 125 125" aria-hidden="true">
+                <defs>
+                  <path
+                    id="about-badge-circle"
+                    d="M 62.5,62.5 m -51,0 a 51,51 0 1,1 102,0 a 51,51 0 1,1 -102,0"
+                  />
+                </defs>
+                <text>
+                  <textPath href="#about-badge-circle" startOffset="0%">
+                    SCROLL DOWN TO SEE MORE WORK -
+                  </textPath>
+                </text>
+              </svg>
+              <img className="badge-core" src={scrollLogo} alt="" aria-hidden="true" />
+            </a>
+          </section>
         </div>
       </div>
     </>
