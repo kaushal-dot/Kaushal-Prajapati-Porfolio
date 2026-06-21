@@ -445,7 +445,7 @@ a {
   min-height: 100vh;
   overflow: hidden;
   place-items: center;
-  background: var(--orange);
+  background: #f05323;
 }
 
 .hello-title {
@@ -453,7 +453,6 @@ a {
   z-index: 5;
   margin: 0;
   color: var(--ink);
-  text-shadow: 0 1px 0 rgba(248, 248, 246, 0.15);
   font-family: var(--display-font);
   font-size: clamp(92px, 7.5vw, 148px);
   font-weight: 400;
@@ -485,7 +484,7 @@ a {
   width: 0.12em;
   height: 0.12em;
   border-radius: 50%;
-  background: var(--orange);
+  background: #f05323;
   opacity: 0;
   transform-origin: center;
   will-change: opacity, transform;

@@ -15,6 +15,9 @@ import Preloader from "./Preloader";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
+const BRAND_ORANGE = "#f05323";
+const PAPER = "#f8f8f6";
+
 const navItems = ["about", "portfolio", "contact"];
 
 const pillars = [
@@ -76,27 +79,27 @@ function App() {
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       if (reducedMotion) {
-        gsap.set(aboutRef.current, { backgroundColor: "var(--paper)" });
+        gsap.set(aboutRef.current, { backgroundColor: PAPER });
         gsap.set(".hello-title", { opacity: 1, y: 0, color: "var(--ink)" });
         gsap.set(".hello-orb", {
           opacity: 1,
           scale: 1,
           xPercent: -50,
           yPercent: 0,
-          backgroundColor: "var(--orange)",
+          backgroundColor: BRAND_ORANGE,
           zIndex: 4,
         });
         gsap.set(".hello-badge", { opacity: 1, scale: 1 });
         return;
       }
 
-      gsap.set(aboutRef.current, { backgroundColor: "var(--orange)" });
+      gsap.set(aboutRef.current, { backgroundColor: BRAND_ORANGE });
       gsap.set(".hello-orb", {
         opacity: 0,
         scale: 1,
         xPercent: -50,
         yPercent: 0,
-        backgroundColor: "var(--orange)",
+        backgroundColor: BRAND_ORANGE,
         zIndex: 0,
       });
       gsap.set(".hello-badge", { opacity: 0, scale: 0.85 });
@@ -133,12 +136,12 @@ function App() {
         )
         .to({}, { duration: 0.9 })
         .set(".hello-orb", { opacity: 1, scale: 240, zIndex: 0 })
-        .set(aboutRef.current, { backgroundColor: "var(--paper)" })
+        .set(aboutRef.current, { backgroundColor: PAPER })
         .to(".hello-orb", {
           scale: 1,
           xPercent: -50,
           yPercent: 0,
-          backgroundColor: "var(--orange)",
+          backgroundColor: BRAND_ORANGE,
           duration: 1.35,
           ease: "power3.inOut",
         })
