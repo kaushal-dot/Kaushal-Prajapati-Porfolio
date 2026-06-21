@@ -76,19 +76,20 @@ function App() {
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       if (reducedMotion) {
-        gsap.set(aboutRef.current, { backgroundColor: "var(--paper)" });
+        gsap.set(aboutRef.current, { backgroundColor: "var(--orange)" });
         gsap.set(".hello-title", { opacity: 1, y: 0, color: "var(--ink)" });
-        gsap.set(".hello-orb", { opacity: 1, scale: 1, xPercent: -50, yPercent: 0 });
+        gsap.set(".hello-orb", { opacity: 0, scale: 1, xPercent: -50, yPercent: 0 });
+        gsap.set(".hello-badge", { opacity: 0, scale: 0.85 });
         return;
       }
 
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: aboutRef.current,
-          start: "top top",
-          end: "+=300%",
-          scrub: 1,
-          pin: true,
+          start: "top bottom",
+          end: "top center",
+          scrub: 1.2,
+          pin: false,
           anticipatePin: 1,
         },
       });
@@ -102,45 +103,14 @@ function App() {
           color: "var(--ink)",
           zIndex: 5,
         })
-        .set(".hello-orb", {
-          opacity: 1,
-          scale: 230,
-          xPercent: -50,
-          yPercent: 0,
-          zIndex: 0,
-        })
+        .set(".hello-orb", { opacity: 0, scale: 1, xPercent: -50, yPercent: 0 })
         .set(".hello-badge", { opacity: 0, scale: 0.85 })
-        .to({}, { duration: 0.45 })
         .to(".hello-title", {
           opacity: 1,
           y: 0,
           duration: 1.2,
           ease: "power2.out",
-        })
-        .to({}, { duration: 0.35 })
-        .to(".hello-orb", {
-          scale: 1,
-          xPercent: -50,
-          yPercent: 0,
-          duration: 1.35,
-          ease: "power3.inOut",
-        })
-        .to(
-          aboutRef.current,
-          {
-            backgroundColor: "var(--paper)",
-            duration: 0.2,
-            ease: "none",
-          },
-          "<0.04",
-        )
-        .set(".hello-orb", { zIndex: 4 })
-        .fromTo(
-          ".hello-badge",
-          { opacity: 0, scale: 0.85 },
-          { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" },
-          "<0.65",
-        );
+        }, 0.35);
 
       return () => timeline.kill();
     },
